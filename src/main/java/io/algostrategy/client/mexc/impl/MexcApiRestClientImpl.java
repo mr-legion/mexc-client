@@ -4,6 +4,7 @@ import io.algostrategy.client.mexc.MexcApiRestClient;
 import io.algostrategy.client.mexc.domain.general.Asset;
 import io.algostrategy.client.mexc.domain.market.ExchangeInfo;
 import io.algostrategy.client.mexc.domain.market.MarketTicker;
+import io.algostrategy.client.mexc.domain.market.OrderBook;
 
 import java.time.Instant;
 import java.util.List;
@@ -41,5 +42,10 @@ public class MexcApiRestClientImpl implements MexcApiRestClient {
     @Override
     public List<MarketTicker> getMarketTickers() {
         return executeSync(mexcApiService.getMarketTickers());
+    }
+
+    @Override
+    public OrderBook getOrderBook(String market, Integer limit) {
+        return executeSync(mexcApiService.getOrderBook(market, limit));
     }
 }

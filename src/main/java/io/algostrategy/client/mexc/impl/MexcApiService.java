@@ -3,6 +3,7 @@ package io.algostrategy.client.mexc.impl;
 import io.algostrategy.client.mexc.domain.general.Asset;
 import io.algostrategy.client.mexc.domain.market.ExchangeInfo;
 import io.algostrategy.client.mexc.domain.market.MarketTicker;
+import io.algostrategy.client.mexc.domain.market.OrderBook;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -30,4 +31,7 @@ public interface MexcApiService {
 
     @GET("/api/v3/ticker/24hr")
     Call<List<MarketTicker>> getMarketTickers();
+
+    @GET("/api/v3/depth")
+    Call<OrderBook> getOrderBook(@Query("symbol") String market, @Query("limit") Integer limit);
 }

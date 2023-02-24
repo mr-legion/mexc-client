@@ -5,6 +5,7 @@ import io.algostrategy.client.mexc.MexcApiRestClient;
 import io.algostrategy.client.mexc.domain.general.Asset;
 import io.algostrategy.client.mexc.domain.market.ExchangeInfo;
 import io.algostrategy.client.mexc.domain.market.MarketTicker;
+import io.algostrategy.client.mexc.domain.market.OrderBook;
 import io.algostrategy.client.mexc.security.ApiCredentials;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,5 +45,13 @@ public class MexcApiRestClientImplTest {
     public void getMarketTickers_ShouldReturnMarketTickers() {
         List<MarketTicker> marketTickers = mexcApiRestClient.getMarketTickers();
         assertThat(marketTickers, allOf(notNullValue(), is(not(empty()))));
+    }
+
+    @Test
+    public void getOrderBook_ShouldReturnOrderBookForETHBTC() {
+        OrderBook orderBook = mexcApiRestClient.getOrderBook("BTCUSDT", 10);
+        assertNotNull(orderBook);
+        assertThat(orderBook.getAsks(), is(not(empty())));
+        assertThat(orderBook.getBids(), is(not(empty())));
     }
 }
