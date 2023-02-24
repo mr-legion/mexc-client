@@ -1,6 +1,7 @@
 package io.algostrategy.client.mexc.impl;
 
 import io.algostrategy.client.mexc.domain.general.Asset;
+import io.algostrategy.client.mexc.domain.market.ExchangeInfo;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -20,4 +21,9 @@ public interface MexcApiService {
     @Headers(AUTHORIZATION_REQUIRED_HEADER)
     @GET("/api/v3/capital/config/getall")
     Call<List<Asset>> getAssets(@Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+
+    // Market data endpoints
+
+    @GET("/api/v3/exchangeInfo")
+    Call<ExchangeInfo> getExchangeInfo();
 }
