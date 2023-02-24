@@ -4,6 +4,7 @@ import io.algostrategy.client.mexc.MexcApiAsyncRestClient;
 import io.algostrategy.client.mexc.MexcApiClientFactory;
 import io.algostrategy.client.mexc.domain.general.Asset;
 import io.algostrategy.client.mexc.domain.market.ExchangeInfo;
+import io.algostrategy.client.mexc.domain.market.MarketTicker;
 import io.algostrategy.client.mexc.security.ApiCredentials;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,5 +39,11 @@ public class MexcApiAsyncRestClientImplTest {
         ExchangeInfo exchangeInfo = mexcApiAsyncRestClient.getExchangeInfo().get();
         assertNotNull(exchangeInfo);
         assertThat(exchangeInfo.getMarkets(), is(not(empty())));
+    }
+
+    @Test
+    public void getMarketTickers_ShouldReturnMarketTickers() throws ExecutionException, InterruptedException {
+        List<MarketTicker> marketTickers = mexcApiAsyncRestClient.getMarketTickers().get();
+        assertThat(marketTickers, allOf(notNullValue(), is(not(empty()))));
     }
 }

@@ -3,6 +3,7 @@ package io.algostrategy.client.mexc.impl;
 import io.algostrategy.client.mexc.MexcApiAsyncRestClient;
 import io.algostrategy.client.mexc.domain.general.Asset;
 import io.algostrategy.client.mexc.domain.market.ExchangeInfo;
+import io.algostrategy.client.mexc.domain.market.MarketTicker;
 
 import java.time.Instant;
 import java.util.List;
@@ -37,6 +38,13 @@ public class MexcApiAsyncRestClientImpl implements MexcApiAsyncRestClient {
     public CompletableFuture<ExchangeInfo> getExchangeInfo() {
         CompletableFuture<ExchangeInfo> future = new CompletableFuture<>();
         mexcApiService.getExchangeInfo().enqueue(new RetrofitCallbackAdapter<>(future));
+        return future;
+    }
+
+    @Override
+    public CompletableFuture<List<MarketTicker>> getMarketTickers() {
+        CompletableFuture<List<MarketTicker>> future = new CompletableFuture<>();
+        mexcApiService.getMarketTickers().enqueue(new RetrofitCallbackAdapter<>(future));
         return future;
     }
 }

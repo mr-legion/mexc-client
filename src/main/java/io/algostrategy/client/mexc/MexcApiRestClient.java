@@ -2,6 +2,7 @@ package io.algostrategy.client.mexc;
 
 import io.algostrategy.client.mexc.domain.general.Asset;
 import io.algostrategy.client.mexc.domain.market.ExchangeInfo;
+import io.algostrategy.client.mexc.domain.market.MarketTicker;
 
 import java.util.List;
 
@@ -27,4 +28,11 @@ public interface MexcApiRestClient {
      * @return market info
      */
     ExchangeInfo getExchangeInfo();
+
+    /**
+     * Get market ticker information.
+     *
+     * @return market tickers
+     */
+    List<MarketTicker> getMarketTickers();
 }
